@@ -29,14 +29,20 @@ describe('Reputation', () => {
     let reputationsResponse;
     const accounts = web3.eth.accounts.wallet;
     let txs = [];
-    txs.push(await reputation.methods.mint(accounts[0].address, '100').send());
+    let value = 1;
+    for (var i=0;i<100;i++) {
+      console.log(value);
+      txs.push(await reputation.methods.mint(accounts[0].address, '1').send());
+      await checkTotalSupply(value.toString());
+      value = value+1;
+    }
 
-    await checkTotalSupply('100');
-    txs.push(await reputation.methods.mint(accounts[1].address, '100').send());
-
-    await checkTotalSupply('200');
-    txs.push(await reputation.methods.burn(accounts[0].address, '30').send());
-    await checkTotalSupply('170');
+    //await checkTotalSupply('100');
+    // txs.push(await reputation.methods.mint(accounts[1].address, '100').send());
+    //
+    // await checkTotalSupply('200');
+    // txs.push(await reputation.methods.burn(accounts[0].address, '30').send());
+    // await checkTotalSupply('170');
 
     //These tests have been comment out due to unknown issue at graph-node !!!
     // Will bring these back as when it will be solved.
