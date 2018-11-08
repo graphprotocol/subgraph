@@ -26,3 +26,22 @@ dataSources:
       handler: handleMint
     - event: Burn(address, uint256)
       handler: handleBurn
+      
+- kind: ethereum/contract
+  name: Ownable
+  source:
+    address: "{{addresses.Ownable}}"
+    abi: Ownable
+  mapping:
+    kind: ethereum/events
+    apiVersion: 0.0.1
+    language: wasm/assemblyscript
+    file: ./src/mappings/wwnable/Ownable.ts
+    entities:
+    - OwnableOwnershipTransferred
+    abis:
+    - name: Ownable
+      file: ./abis/Ownable.json
+    eventHandlers:
+    - event: OwnershipTransferred(address, address)
+      handler: handleOwnershipTransferred
