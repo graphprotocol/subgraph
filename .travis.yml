@@ -33,7 +33,7 @@ install:
 
 script:
   - sudo docker-compose build subgraph
-  - sudoc docker-compose run subgraph migrate:development
+  - sudo docker-compose run subgraph migrate:development
   - npm run test_travis
   - sudo docker-compose run subgraph lint
 
