@@ -21,6 +21,7 @@
     "deploy": "graph deploy --ipfs /ip4/127.0.0.1/tcp/5001 --node http:/127.0.0.1/:8020 -n daostack subgraph.yaml",
     "deploy:watch": "graph deploy -w --ipfs ${ipfs-/ip4/127.0.0.1/tcp/5001} --node ${node_rpc-http://127.0.0.1:8020/} -n daostack subgraph.yaml",
     "test": "npm run docker migrate:development && npm run deploy && jest --runInBand --forceExit",
+    "test_travis": "npm run deploy && jest --runInBand --forceExit",
     "docker": "docker-compose run --rm -v $(pwd):/usr/app -v /usr/app/node_modules subgraph \"$@\"",
     "docker:stop": "docker-compose down -v",
     "docker:run": "docker-compose up",
