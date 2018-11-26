@@ -46,11 +46,13 @@ services:
       POSTGRES_PASSWORD: '{{postgresPassword}}'
   {{#if development}}
   ganache:
-    image: trufflesuite/ganache-cli:v6.2.1
+    image: trufflesuite/ganache-cli:v6.2.3
     ports:
       - 8545:8545
+    volumes:
+      - ./node_modules/@daostack/migration/db:/app/db
     command: >
       --deterministic
-      --mnemonic "{{test_mnemonic}}"
+      --db=./db
       --gasLimit 8000000
   {{/if}}
