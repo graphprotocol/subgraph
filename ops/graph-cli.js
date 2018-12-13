@@ -7,6 +7,7 @@ const runGraphCli = async (args = [], cwd = process.cwd()) => {
 
   // Make sure to set an absolute working directory
   cwd = cwd[0] !== '/' ? path.resolve(__dirname, cwd) : cwd;
+  cwd = path.resolve('.')
   let graphCli = `${cwd}/node_modules/@graphprotocol/graph-cli/graph.js`;
   console.log(graphCli)
 

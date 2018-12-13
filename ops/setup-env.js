@@ -19,7 +19,7 @@ async function setupenv () {
   console.log(`Generating subgraph`);
   await require(`../ops/generate-subgraph`)();
 
-  const cwd = subgraphRepo;
+  const cwd = '.';
   console.log('Calling graph codegen');
   result = await require(`../ops/graph-codegen`)(cwd);
   console.log(result);
