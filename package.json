@@ -24,6 +24,7 @@
 		"jest": "jest --runInBand --forceExit",
 		"lint": "tslint -c tslint.json 'src//*.ts' -e 'src/types//.ts' && tslint -c tslint.json 'test/**/.ts'",
 		"migrate": "node ops/deployDaoStack.js",
+		"setup-env": "node ops/setup-env.js",
 		"test": "npm run deploy && jest --runInBand --forceExit",
 		"test:watch": "npm run test -- --watch"
 	},
