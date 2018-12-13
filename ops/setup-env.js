@@ -11,21 +11,21 @@ async function setupenv () {
   console.log(result.migrationResult);
   console.log(`Generating ABI files`);
   // node ops/generate-abis.js && node ops/generate-schema.js && node ops/generate-subgraph.js
-  await require(`../ops/generate-abis`)();
+  await require(`./generate-abis`)();
 
   console.log(`Generating schemas`);
-  await require(`${subgraphRepo}/ops/generate-schema`)();
+  await require(`./generate-schema`)();
 
   console.log(`Generating subgraph`);
-  await require(`../ops/generate-subgraph`)();
+  await require(`./generate-subgraph`)();
 
   const cwd = '.';
   console.log('Calling graph codegen');
-  result = await require(`../ops/graph-codegen`)(cwd);
+  result = await require(`./graph-codegen`)(cwd);
   console.log(result);
 
   console.log('Deploying subgraph configuration');
-  result = await require(`${subgraphRepo}/ops/graph-deploy`)();
+  result = await require(`./graph-deploy`)();
   console.log(result[1])
   console.log('Environment setup finished successfully');
   // deploymentResult[0] is the status code

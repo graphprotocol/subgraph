@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 const yaml = require('js-yaml');
-const { migrationFileLocation, subgraphyamlLocation } = require('./settings');
+const { migrationFileLocation, subgraphyamlLocation, workingDir } = require('./settings');
 
 /**
  * Generate a `subgraph.yaml` file from `datasource.yaml` fragments in `mappings` directory and `migration.json`
@@ -11,7 +11,7 @@ async function generateSubgraph() {
 	const migrationFile = migrationFileLocation;
 	const addresses = JSON.parse(fs.readFileSync(migrationFile, 'utf-8'));
 
-	const mappingDir = path.resolve(`${__dirname}/../src/mappings`)
+	const mappingDir = path.resolve(`${workingDir}/src/mappings`)
 	const files = await new Promise((res, rej) =>
 		glob(`${mappingDir}/**/datasource.yaml`, (err, files) => (err ? rej(err) : res(files)))
 	);
@@ -40,7 +40,7 @@ async function generateSubgraph() {
 				language: 'wasm/assemblyscript',
 				file: path.join(path.dirname(file), 'mapping.ts'),
 				entities,
-				abis: (abis || [contract]).map(contract => ({ name: contract, file: `./abis/${contract}.json` })),
+				abis: (abis || [contract]).map(contract => ({ name: contract, file: `${workingDir}/abis/${contract}.json` })),
 				eventHandlers,
 			},
 		};

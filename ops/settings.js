@@ -1,8 +1,10 @@
 const path = require('path');
-const migrationFileLocation = path.resolve(`${__dirname}/../migration.json`);
-const subgraphyamlLocation = path.resolve(`${__dirname}/../subgraph.yaml`);
+const workingDir = path.resolve(`${__dirname}/..`)
+const migrationFileLocation = path.resolve(`${workingDir}/migration.json`);
+const subgraphyamlLocation = path.resolve(`${workingDir}/subgraph.yaml`);
 
 module.exports = {
   migrationFileLocation,
-  subgraphyamlLocation
+  subgraphyamlLocation,
+  workingDir
 };
