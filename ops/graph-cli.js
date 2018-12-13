@@ -34,9 +34,6 @@ const runGraphCli = async (args = [], cwd = process.cwd()) => {
 };
 
 
-const subgraphLocation = path.resolve(`${__dirname}/../subgraph.yaml`);
-
 module.exports = {
-  runGraphCli,
-  subgraphLocation
+  runGraphCli
 };

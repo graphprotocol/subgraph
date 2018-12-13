@@ -16,7 +16,7 @@ async function deployDaoStack (options) {
     // disable confirmation messages
     force: true,
     // filepath to output the migration results
-    output: path.resolve(migrationFileLocation),
+    output: migrationFileLocation,
     ...options
   };
 

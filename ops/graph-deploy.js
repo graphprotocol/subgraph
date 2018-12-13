@@ -1,19 +1,19 @@
 const path = require('path');
-const { runGraphCli, subgraphLocation } = require('./graph-cli.js');
-
+const { runGraphCli } = require('./graph-cli.js');
+const { subgraphyamlLocation } = require('./settings.js')
 
 async function deploy(cwd) {
   if (cwd === undefined) {
     cwd = path.resolve(`${__dirname}/..`);
   }
-  console.log(`using ${cwd} and ${subgraphLocation}`);
+  console.log(`using ${cwd} and ${subgraphyamlLocation}`);
   const result = await runGraphCli([
     'deploy',
     '--access-token ""',
     '--ipfs ${ipfs-/ip4/127.0.0.1/tcp/5001}',
     '--node ${node_rpc-http://127.0.0.1:8020/}',
     '-n daostack',
-    subgraphLocation
+    subgraphyamlLocation
   ], cwd);
   const msg = result[1];
   if (result[0] === 1) {
