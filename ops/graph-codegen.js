@@ -1,10 +1,10 @@
 const { runGraphCli } = require('./graph-cli.js');
-const { subgraphyamlLocation } = require('./settings.js')
+const { subgraphyamlLocation, workingDir } = require('./settings.js')
 
 async function codegen(cwd) {
   const result = await runGraphCli([
     'codegen',
-    '--output-dir src/types/',
+    `--output-dir ${__dirname}/../src/types/`,
     subgraphyamlLocation
   ], cwd);
   if (result[0] === 1) {
