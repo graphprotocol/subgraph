@@ -6,10 +6,14 @@ const { workingDir } = require('./settings')
  * Merge all schemas (files with `.graphql` extension) from `mappings` into a single schema
  */
 async function generateSchema() {
+	const mappingsDir = path.resolve(`${__dirname}/../src/mappings`)
 	const files = await new Promise((res, rej) =>
-		glob(`${workingDir}/src/mappings/**/schema.graphql`, (err, files) => (err ? rej(err) : res(files)))
+		glob(path.resolve(`${mappingsDir}/**/schema.graphql`), (err, files) => (err ? rej(err) : res(files)))
 	);
-	const schema = [...files, `${workingDir}/src/domain/schema.graphql`]
+	if (!files) {
+		throw Error('No mapping files found in ${_dirname}/../src/mapping')
+	}
+	const schema = [...files, `${__dirname}/../src/domain/schema.graphql`]
 		.map(file => {
 			const name = path.basename(path.dirname(file));
 			const content = fs.readFileSync(file, 'utf-8');

@@ -11,7 +11,7 @@ async function generateSubgraph() {
 	const migrationFile = migrationFileLocation;
 	const addresses = JSON.parse(fs.readFileSync(migrationFile, 'utf-8'));
 
-	const mappingDir = path.resolve(`${workingDir}/src/mappings`)
+	const mappingDir = path.resolve(`${__dirname}/../src/mappings`)
 	const files = await new Promise((res, rej) =>
 		glob(`${mappingDir}/**/datasource.yaml`, (err, files) => (err ? rej(err) : res(files)))
 	);

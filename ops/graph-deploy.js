@@ -1,10 +1,11 @@
 const path = require('path');
 const { runGraphCli } = require('./graph-cli.js');
-const { subgraphyamlLocation } = require('./settings.js')
+const { subgraphyamlLocation, workingDir } = require('./settings.js')
 
 async function deploy(cwd) {
   if (cwd === undefined) {
-    cwd = path.resolve(`${__dirname}/..`);
+    // cwd = path.resolve(`${__dirname}/..`);
+    cwd = workingDir
   }
   console.log(`using ${cwd} and ${subgraphyamlLocation}`);
   const result = await runGraphCli([

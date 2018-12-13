@@ -1,7 +1,10 @@
 const path = require('path');
-const subgraphRepo = path.resolve(`${__dirname}/..`);
 
-async function setupenv () {
+async function setupenv (workDir) {
+  if (!workDir) {
+    workDir = path.resolve('..')
+  }
+
   let result;
   console.log(`Deploying Daostack contracts`);
   const deployDaoStack = require('./deployDaoStack');
